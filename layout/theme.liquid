@@ -13,6 +13,20 @@
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js' | script_tag }}
 
   <script>
+  // resources for displaying number of items currently in cart
+  var cartCount = {{ cart.item_count }};
+
+  $(document).ready(function() {
+    {% if cart.item_count != 0 %}
+      $('#cart-number').replaceWith("<a href="/cart" id="cart-number">View cart (" + cartCount + ")</a>");
+    {% endif %}
+
+    $('.modal--overlay').on('click', function(){
+       var overlay = $('.modal--overlay')
+       closeModal(overlay)
+    })
+  });
+
     //Modal Actions
     // center modal based on window size
     function centerModal() {
@@ -46,16 +60,6 @@
       $('.modal.open').addClass('hidden').removeClass('open');
       $('body').css('overflow', 'auto');
     }
-
-  // resources for displaying number of items currently in cart
-  var cartCount = {{ cart.item_count }};
-
-  $(document).ready(function() {
-    {% if cart.item_count != 0 %}
-      $('#cart-number').replaceWith("<a href="/cart" id="cart-number">View cart (" + cartCount + ")</a>");
-    {% endif %}
-  });
-
   </script>
 </head>
 <body>
