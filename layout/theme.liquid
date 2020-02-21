@@ -40,12 +40,22 @@
       centerModal();
     }
 
-  // close modal and overlay
+    // close modal and overlay
     function closeModal(overlay) {
       $(overlay).addClass('hidden').removeClass('open');
       $('.modal.open').addClass('hidden').removeClass('open');
       $('body').css('overflow', 'auto');
     }
+
+  // resources for displaying number of items currently in cart
+  var cartCount = {{ cart.item_count }};
+
+  $(document).ready(function() {
+    {% if cart.item_count != 0 %}
+      $('#cart-number').replaceWith("<a href="/cart" id="cart-number">View cart (" + cartCount + ")</a>");
+    {% endif %}
+  });
+
   </script>
 </head>
 <body>
@@ -62,7 +72,7 @@
     {% endif %}
   {% endfor %}
 
-  <a href="/cart">cart</a>
+  <a id="cart-number" href="/cart">cart</a>
 
   {% if shop.customer_accounts_enabled %}
     {% if customer %}
