@@ -11,20 +11,21 @@
   {{ 'application.scss.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }}
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js' | script_tag }}
-  // resources for displaying number of items currently in cart
-  var cartCount = {{ cart.item_count }};
+  <script>
+    // resources for displaying number of items currently in cart
+    var cartCount = {{ cart.item_count }};
 
-  $(document).ready(function() {
-    {% if cart.item_count != 0 %}
-      $('#cart-number').replaceWith("<a href="/cart" id="cart-number">View cart (" + cartCount + ")</a>");
-    {% endif %}
+    $(document).ready(function() {
+      {% if cart.item_count != 0 %}
+        $('#cart-number').replaceWith("<a href="/cart" id="cart-number">View cart (" + cartCount + ")</a>");
+      {% endif %}
 
-    $('.modal--overlay').on('click', function(){
-       var overlay = $('.modal--overlay')
-       closeModal(overlay)
-    })
-  });
-  
+      $('.modal--overlay').on('click', function(){
+         var overlay = $('.modal--overlay')
+         closeModal(overlay)
+      })
+    });
+
   // ajax call for adding an item to cart
     function addItem(form_id) {
        $.ajax({
