@@ -12,6 +12,7 @@
   {{ 'application.js' | asset_url | script_tag }}
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js' | script_tag }}
   <script>
+    // ajax call for adding an item to cart
     function addItem(form_id) {
        $.ajax({
           type: 'POST',
@@ -21,6 +22,21 @@
           success: addToCartOk,
           error: addToCartFail
        });
+    }
+
+    // displays a message if product was successfully added to the cart
+    function addToCartOk(product) {
+       cartCount++;
+       $('.modal').html(product.title + ' was added to the cart!');
+       $('#cart-number').replaceWith("<a href="/cart" id="cart-number">View cart (" + cartCount + ")</a>");
+       openModal();
+    }
+
+    // displays a message if product failed to be added to the cart
+
+    function addToCartFail(obj, status) {
+       $('.modal').html('The product you are trying to add is out of stock.');
+       openModal()
     }
   </script>
 </head>
