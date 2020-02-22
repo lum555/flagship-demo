@@ -1,4 +1,5 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
+{% assign current_stock = current_variant.inventory_quantity %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
 {% for image in product.images %}
@@ -24,8 +25,19 @@
   {{ current_variant.price | money }}
   <label for="Quantity">quantity</label>
   <input type="number" id="Quantity" name="quantity" value="1" min="1">
-  <button type="submit" name="add" id="AddToCart" onclick="addToCart('AddToCartForm'); return false;">
-    Add to cart
+  {% if current_variant.available %}
+    {% assign submit-color='in-stock' %}
+    {% if current_stock >= 5 %}
+      {% assign submit-text='Add to cart' %}
+    {% else %}
+      {% assign submit-text='Low stock' %}
+    {% endif %}
+  {% else %}
+    {% assign submit-color='no-stock' %}
+    {% assign submit-text='No stock' %}
+  {% endif %}
+  <button type="submit" class={{submit-color}} name="add" id="AddToCart" onclick="addToCart('AddToCartForm'); return false;">
+    {{ submit-text }}
   </button>
 </form>
 <div>{{ product.description }}</div>
