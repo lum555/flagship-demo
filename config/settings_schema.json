@@ -14,8 +14,7 @@
         "type": "textarea",
         "id": "coding-test",
         "default": "<h3>This is a random title</h3>",
-        "label": "Random Title",
-        "info": "Random Title"
+        "label": "Random Title"
       }
     ]
   }
