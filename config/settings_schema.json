@@ -6,5 +6,16 @@
     "theme_author": "Shopify",
     "theme_documentation_url": "https://github.com/Shopify/themekit",
     "theme_support_url": "https://github.com/Shopify/themekit/issues"
+  },
+  {
+    "name": "Coding Test",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "coding-test",
+        "default": "<h3>This is a random title</h3>",
+        "label": "Random Title"
+      }
+    ]
   }
 ]

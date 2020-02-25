@@ -19,6 +19,11 @@
   </script>
 </head>
 <body>
+  <div>
+    {{ settings.coding-test }}
+  </div>
+
+  {% section 'choose-collection' %}<br>
 
   {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}
@@ -48,5 +53,8 @@
     {{ content_for_layout }}
   </main>
 
+  <script>
+    console.log("{{ settings.coding-test }}");
+  </script>
 </body>
 </html>
