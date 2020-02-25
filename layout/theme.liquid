@@ -15,8 +15,18 @@
   {{ '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' | script_tag }}
   {{ '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' | stylesheet_tag }}
   {{ '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' | stylesheet_tag }}
+  <script>
+    function addToCart() {
+      jQuery.post('/cart/add.js', $('form[action="/cart/add"]').serialize())
+    }
+  </script>
 </head>
 <body>
+  <div>
+    {{ settings.coding-test }}
+  </div>
+
+  {% section 'choose-collection' %}<br>
 
   {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}
@@ -30,7 +40,7 @@
     {% endif %}
   {% endfor %}
 
-  <a id="cart" href="/cart">cart</a>
+  <a href="/cart">cart</a>
 
   {% if shop.customer_accounts_enabled %}
     {% if customer %}
@@ -45,5 +55,9 @@
   <main role="main">
     {{ content_for_layout }}
   </main>
+
+  <script>
+    console.log("{{ settings.coding-test }}");
+  </script>
 </body>
 </html>

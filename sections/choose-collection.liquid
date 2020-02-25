@@ -1,0 +1,5 @@
+<h2>Choose a collection:</h2>
+
+{% for collection in collections %}
+  <a href="{{ collection.url }}?sort_by=title-ascending">{{ collection.title }} - {{ collection.all_products_count }}<br></a>
+{% endfor %}
