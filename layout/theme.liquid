@@ -22,9 +22,18 @@
   </script>
 </head>
 <body>
+
+  {% comment %}
+    Displays a random title from the settings schema
+  {% endcomment %}
+
   <div>
     {{ settings.coding-test }}
   </div>
+
+  {% comment %}
+    Displays a list of collections with appropriate URLs on the homepage
+  {% endcomment %}
 
   {% section 'choose-collection' %}<br>
 
@@ -55,6 +64,10 @@
   <main role="main">
     {{ content_for_layout }}
   </main>
+
+  {% comment %}
+    Logs the random title from earlier into the console
+  {% endcomment %}
 
   <script>
     console.log("{{ settings.coding-test }}");
