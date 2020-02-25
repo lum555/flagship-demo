@@ -25,6 +25,12 @@
   {{ current_variant.price | money }}
   <label for="Quantity">quantity</label>
   <input type="number" id="Quantity" name="quantity" value="1" min="1">
+
+  {% comment %}
+    Assigns appropriate colour CSS class and text input to the product depending on
+    current availability.
+  {% endcomment %}
+
   {% if current_variant.available %}
     {% assign submit-color='in-stock' %}
     {% if current_stock >= 5 %}
@@ -36,11 +42,17 @@
     {% assign submit-color='no-stock' %}
     {% assign submit-text='No stock' %}
   {% endif %}
+
   <button type="submit" class={{submit-color}} name="add" id="AddToCart" onclick="addToCart('AddToCartForm'); return false;">
     {{ submit-text }}
   </button>
 </form>
 <div>{{ product.description }}</div>
+
+{% comment %}
+  Shows a modal for your the current available stock of the item as well as detailed
+  information about your cart.
+{% endcomment %}
 
 <div class="modal" id="product-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -67,6 +79,10 @@
     </div>
   </div>
 </div>
+
+{% comment %}
+  Script to load the modal automatically upon page load
+{% endcomment %}
 
 <script>
    $(window).on('load',function(){
