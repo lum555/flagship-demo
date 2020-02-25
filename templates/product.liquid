@@ -39,6 +39,13 @@
       </div>
       <div class="modal-body">
         <p>Item Current Stock: {{ current_variant.inventory_quantity }}</p>
+        <p>Current Items in Cart: {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</p>
+        <p>List of Items in Cart:<p>
+        <ul>
+          {% for item in cart.items %}
+            <li>{{ item.title }} x {{ item.quantity }}</li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
